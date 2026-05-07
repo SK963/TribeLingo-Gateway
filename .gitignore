@@ -1,0 +1,143 @@
+# =========================
+# OS / System Files
+# =========================
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# =========================
+# IDE / Editor
+# =========================
+.vscode/
+.idea/
+*.iml
+
+# =========================
+# Logs & Debug
+# =========================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# =========================
+# Environment Variables
+# =========================
+.env
+
+
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual Environments
+venv/
+env/
+ENV/
+.venv/
+
+# Python Packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Testing
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# =========================
+# Node.js
+# =========================
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+dist/*
+.npm-cache/*
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+coverage/
+
+# =========================
+# Frontend (React/Vite/Next)
+# =========================
+.cache/
+.parcel-cache/
+vite.svg
+
+# =========================
+# Kubernetes / DevOps
+# =========================
+
+# Ignore secrets & sensitive configs
+*.secret.yaml
+*.secrets.yaml
+secrets.yaml
+
+# Helm
+charts/**/charts/
+charts/**/tmp/
+*.tgz
+
+# Kubeconfig files
+kubeconfig*
+*.kubeconfig
+
+# Terraform (if used)
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# =========================
+# Docker
+# =========================
+docker-compose.override.yml
+*.pid
+
+# =========================
+# Misc
+# =========================
+*.bak
+*.tmp
+*.temp
+
+# =========================
+# Optional (Uncomment if needed)
+# =========================
+
+# Ignore migrations (ONLY if auto-generated)
+# migrations/
+
+# Ignore test data
+# data/
+# datasets/
+
+# Ignore model files (ML projects)
+# *.h5
+# *.pt
+# *.pth
+# *.ckpt
+v1/.npm-cache
+v1/dist/
