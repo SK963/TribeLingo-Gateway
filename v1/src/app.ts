@@ -69,6 +69,17 @@ app.get("/healthz", async (_req, res) => {
   }
 });
 
+// Fire-and-forget endpoint to wake up the downstream microservices from idle sleep
+app.get("/health/wake", (_req, res) => {
+  // We use fetch with a short timeout or just ignore the promise
+  Promise.allSettled([
+    fetch(`${env.TRANSLATION_SERVICE_URL}/health`).catch(() => {}),
+    fetch(`${env.POS_SERVICE_URL}/`).catch(() => {}),
+    fetch(`${env.CHATBOT_SERVICE_URL}/health`).catch(() => {})
+  ]);
+  return res.json({ status: "waking" });
+});
+
 app.use("/api", apiRouter);
 
 app.use((_req, res) => res.status(404).json({ error: "Not found" }));
