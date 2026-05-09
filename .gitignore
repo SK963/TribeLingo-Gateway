@@ -143,3 +143,7 @@ v1/.npm-cache
 v1/dist/
 v1/.env.production
 v1/.env.local
+v1/.env.k8s
+.gitignore
+.gitignore
+v1/.env.render
