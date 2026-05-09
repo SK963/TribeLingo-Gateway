@@ -11,7 +11,16 @@ import { redis } from "./modules/cache/redis";
 
 const app = express();
 
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+        "upgrade-insecure-requests": null, // Disable forcing HTTPS for subresources on HTTP endpoints
+      },
+    },
+  })
+);
 
 // Determine allowed CORS origins:
 // - Development: auto-allow any localhost/127.0.0.1 origin so Vite port changes never break it.
@@ -20,13 +29,15 @@ app.use(helmet());
 const corsOrigin = (() => {
   if (env.NODE_ENV !== "production") {
     return (origin: string | undefined, cb: (e: Error | null, allow?: boolean) => void) => {
-      // Allow requests with no origin (curl, Postman), any localhost variant, or ngrok URLs
+      const allowedOrigins = env.CORS_ORIGIN ? env.CORS_ORIGIN.split(",").map(s => s.trim()) : [];
+      // Allow requests with no origin (curl, Postman), any localhost variant, ngrok URLs, or explicitly configured CORS origins
       if (
         !origin ||
         /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin) ||
         origin.includes('.ngrok') ||
         origin.includes('.ngrok-free.dev') ||
-        origin.includes('.ngrok.app')
+        origin.includes('.ngrok.app') ||
+        allowedOrigins.includes(origin)
       ) {
         return cb(null, true);
       }

@@ -141,3 +141,5 @@ docker-compose.override.yml
 # *.ckpt
 v1/.npm-cache
 v1/dist/
+v1/.env.production
+v1/.env.local

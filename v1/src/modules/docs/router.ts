@@ -9,6 +9,13 @@ docsRouter.get("/openapi.json", (_req, res) => {
   return res.json(buildOpenApiDocument());
 });
 
+docsRouter.get("/docs", (req, res, next) => {
+  if (!req.originalUrl.endsWith('/')) {
+    return res.redirect('docs/');
+  }
+  next();
+});
+
 docsRouter.use(
   "/docs",
   swaggerUi.serve,
